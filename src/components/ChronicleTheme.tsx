@@ -14,7 +14,7 @@ const ChronicleTheme = ({ yourName, partnerName, date, message, image, forceDesk
       style={forceDesktop ? {} : { minHeight: '500px' }}
     >
       {/* Header */}
-      <header className={`text-center px-4 sm:px-6 ${forceDesktop ? 'pt-4 pb-3' : 'pt-4 sm:pt-6 pb-3 sm:pb-4'}`}>
+      <header className={`text-center ${forceDesktop ? 'px-3 pt-2 pb-2' : 'px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4'}`}>
         <p className={`font-decorative text-chronicle-ink/70 tracking-widest mb-2 leading-relaxed ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>
           This vintage edition captures the essence of a bygone era, celebrating the spirit and simplicity of 1884
         </p>
@@ -47,14 +47,14 @@ const ChronicleTheme = ({ yourName, partnerName, date, message, image, forceDesk
       </header>
 
       {/* Breaking Bulletin */}
-      <div className="mx-4 sm:mx-6 mb-4 border-2 border-chronicle-ink/30 bg-chronicle-paper/50 p-2 text-center">
+      <div className={`border-2 border-chronicle-ink/30 bg-chronicle-paper/50 p-2 text-center ${forceDesktop ? 'mx-3 mb-2' : 'mx-4 sm:mx-6 mb-4'}`}>
         <p className={`font-chronicle uppercase tracking-widest font-bold text-chronicle-ink ${forceDesktop ? 'text-sm' : 'text-[10px] sm:text-xs md:text-sm'}`}>
           ★ SPECIAL EDITION ★ Romance Declared ★ Hearts United ★
         </p>
       </div>
 
       {/* Three-column content */}
-      <div className={`grid gap-0 px-3 sm:px-4 pb-4 sm:pb-6 ${forceDesktop ? 'grid-cols-3' : 'grid-cols-1 md:grid-cols-3'}`}>
+      <div className={`grid gap-0 ${forceDesktop ? 'grid-cols-3 px-3 pb-3' : 'px-3 sm:px-4 pb-4 sm:pb-6 grid-cols-1 md:grid-cols-3'}`}>
         {/* Left: Portrait + Name */}
         <div className={`${forceDesktop ? 'border-r-2 pr-3' : 'md:border-r-2 border-chronicle-ink/30 md:pr-3'} py-3`}>
           {image && (
@@ -174,7 +174,7 @@ const ChronicleTheme = ({ yourName, partnerName, date, message, image, forceDesk
       </div>
 
       {/* Bottom Section - Announcements */}
-      <div className="mx-4 sm:mx-6 mb-4 border-t-2 border-chronicle-ink pt-3">
+      <div className={`border-t-2 border-chronicle-ink ${forceDesktop ? 'mx-3 mb-2 pt-2' : 'mx-4 sm:mx-6 mb-4 pt-3'}`}>
         <div className={`grid gap-3 sm:gap-4 ${forceDesktop ? 'grid-cols-3' : 'grid-cols-1 sm:grid-cols-3'}`}>
           <div className="text-center p-2">
             <p className={`font-chronicle uppercase tracking-widest text-chronicle-ink/60 mb-1 ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>Society Notes</p>
@@ -198,7 +198,7 @@ const ChronicleTheme = ({ yourName, partnerName, date, message, image, forceDesk
       </div>
 
       {/* Footer */}
-      <footer className="border-t-2 border-chronicle-ink px-4 sm:px-6 py-3 text-center">
+      <footer className={`border-t-2 border-chronicle-ink text-center ${forceDesktop ? 'px-3 py-2' : 'px-4 sm:px-6 py-3'}`}>
         <span className={`font-decorative text-chronicle-ink/60 ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>
           ❧ Printed with Love on the Finest Parchment ❧
         </span>
