@@ -11,7 +11,7 @@ const ChronicleTheme = ({ yourName, partnerName, date, message, image, forceDesk
   return (
     <div
       className={`chronicle-paper paper-shadow w-full max-w-2xl mx-auto ${forceDesktop ? 'p-0' : 'p-4 sm:p-6'}`}
-      style={forceDesktop ? { background: 'transparent' } : { minHeight: '500px' }}
+      style={forceDesktop ? {} : { minHeight: '500px' }}
     >
       {/* Header */}
       <header className="text-center pb-3 sm:pb-4">
