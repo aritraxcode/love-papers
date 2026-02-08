@@ -11,10 +11,10 @@ const ChronicleTheme = ({ yourName, partnerName, date, message, image, forceDesk
   return (
     <div
       className={`chronicle-paper paper-shadow w-full max-w-2xl mx-auto ${forceDesktop ? '' : ''}`}
-      style={{ minHeight: '500px' }}
+      style={forceDesktop ? {} : { minHeight: '500px' }}
     >
       {/* Header */}
-      <header className={`text-center px-4 sm:px-6 ${forceDesktop ? 'pt-6 pb-4' : 'pt-4 sm:pt-6 pb-3 sm:pb-4'}`}>
+      <header className={`text-center px-4 sm:px-6 ${forceDesktop ? 'pt-4 pb-3' : 'pt-4 sm:pt-6 pb-3 sm:pb-4'}`}>
         <p className={`font-decorative text-chronicle-ink/70 tracking-widest mb-2 leading-relaxed ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>
           This vintage edition captures the essence of a bygone era, celebrating the spirit and simplicity of 1884
         </p>

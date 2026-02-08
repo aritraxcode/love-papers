@@ -3,7 +3,6 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { useCallback, useRef, useState } from "react";
 import LoveInputForm from "@/components/LoveInputForm";
-import ScrollIndicator from "@/components/ScrollIndicator";
 import BackToTop from "@/components/BackToTop";
 import { toPng } from "html-to-image";
 
@@ -175,16 +174,13 @@ function IndexContext() {
                   forceDesktop={isDownloading}
                 />
               </div>
-
-              {/* Mobile Scroll Indicator */}
-              <ScrollIndicator targetId="love-input-form" text="Scroll down to edit your letter" />
             </div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-8 border-t border-ornament">
+      <footer className="text-center py-8 px-4 border-t border-ornament">
         <p className="font-decorative text-ink-faded  tracking-wider">
           Designed & developed with <span className="text-love-red">♥</span> by
           Aritra Samanta <br /> GitHub:{" "}
