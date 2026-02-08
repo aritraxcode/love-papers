@@ -84,39 +84,47 @@ const LoveInputForm = ({
             <input
               id="date"
               type="text"
+              readOnly
+              onClick={() => {
+                // Find the date input sibling and open picker
+                const dateInput = document.getElementById('hidden-date-input') as HTMLInputElement;
+                if (dateInput && 'showPicker' in dateInput) {
+                  (dateInput as any).showPicker();
+                } else {
+                  dateInput?.click();
+                }
+              }}
               placeholder={`E.g. ${new Date().toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
                 year: "numeric",
               })}`}
               value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="vintage-input w-full pr-10"
+              className="vintage-input w-full pr-10 cursor-pointer"
             />
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faded hover:text-love-red transition-colors cursor-pointer">
-              <div className="relative">
-                <IconCalendar size={20} />
-                <input
-                  type="date"
-                  className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      const selectedDate = new Date(e.target.value);
-                      /* Adjust for timezone offset to prevent one-day-off errors */
-                      const userTimezoneOffset = selectedDate.getTimezoneOffset() * 60000;
-                      const adjustedDate = new Date(selectedDate.getTime() + userTimezoneOffset);
-
-                      const formattedDate = adjustedDate.toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      });
-                      setDate(formattedDate);
-                    }
-                  }}
-                />
-              </div>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faded pointer-events-none">
+              <IconCalendar size={20} />
             </div>
+            <input
+              id="hidden-date-input"
+              type="date"
+              className="absolute inset-0 opacity-0 cursor-pointer w-full h-full -z-10"
+              onChange={(e) => {
+                if (e.target.value) {
+                  const selectedDate = new Date(e.target.value);
+                  /* Adjust for timezone offset to prevent one-day-off errors */
+                  const userTimezoneOffset = selectedDate.getTimezoneOffset() * 60000;
+                  const adjustedDate = new Date(selectedDate.getTime() + userTimezoneOffset);
+
+                  const formattedDate = adjustedDate.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  });
+                  setDate(formattedDate);
+                }
+              }}
+            />
           </div>
         </div>
 

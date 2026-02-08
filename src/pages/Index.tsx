@@ -35,6 +35,7 @@ function IndexContext() {
       const originalMargin = element.style.margin;
       const originalPadding = element.style.padding;
       const originalTransform = element.style.transform;
+      const originalBoxShadow = element.style.boxShadow; // Save shadow
 
       // Force desktop styles on the LIVE element temporarily
       // This ensures 100% accurate rendering context (fonts, bg, etc.)
@@ -45,14 +46,13 @@ function IndexContext() {
       element.style.margin = "0";
       element.style.padding = "0"; // Removed padding to eliminate border
       element.style.transform = "scale(1)";
+      element.style.boxShadow = "none"; // Remove shadow/border for download
 
       // Small delay to let layout settle
       await new Promise((resolve) => setTimeout(resolve, 100));
 
       const dataUrl = await toPng(element, {
         cacheBust: true, // Ensure fresh capture
-        width: 768, // Base width at 3x = 2304px
-        height: 761, // Base height at 3x = 2283px
         pixelRatio: 3, // Higher resolution (3x) for superior quality
         // PNG is lossless - no quality parameter needed
       });
@@ -65,6 +65,7 @@ function IndexContext() {
       element.style.margin = originalMargin;
       element.style.padding = originalPadding;
       element.style.transform = originalTransform;
+      element.style.boxShadow = originalBoxShadow; // Restore shadow
 
       // Trigger download via invisible anchor element
       const link = document.createElement("a");
