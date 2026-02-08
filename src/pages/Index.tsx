@@ -3,6 +3,8 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { useCallback, useRef, useState } from "react";
 import LoveInputForm from "@/components/LoveInputForm";
+import ScrollIndicator from "@/components/ScrollIndicator";
+import BackToTop from "@/components/BackToTop";
 import { toPng } from "html-to-image";
 
 function IndexContext() {
@@ -106,7 +108,7 @@ function IndexContext() {
   }, [partnerName]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ scrollBehavior: 'smooth' }}>
       {/* Hero Header */}
       <header className="text-center py-8 sm:p-12 px-4">
         <div className="flex items-center justify-center gap-3 mb-4">
@@ -134,6 +136,7 @@ function IndexContext() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Input Form */}
           <div
+            id="love-input-form"
             className="order-2 lg:order-1 animate-fade-in"
             style={{ animationDelay: "0.1s" }}
           >
@@ -158,11 +161,11 @@ function IndexContext() {
             className="order-1 lg:order-2 animate-fade-in"
             style={{ animationDelay: "0.2s" }}
           >
-            <div className="sticky top-4">
+            <div className="lg:sticky lg:top-4">
               <p className="font-headline text-center text-sm uppercase tracking-widest text-ink-faded mb-4">
                 Live Preview
               </p>
-              <div ref={previewRef} className="w-full">
+              <div ref={previewRef} className="w-full max-w-2xl mx-auto">
                 <NewspaperPreview
                   yourName={yourName}
                   partnerName={partnerName}
@@ -172,6 +175,9 @@ function IndexContext() {
                   forceDesktop={isDownloading}
                 />
               </div>
+
+              {/* Mobile Scroll Indicator */}
+              <ScrollIndicator targetId="love-input-form" text="Scroll down to edit your letter" />
             </div>
           </div>
         </div>
@@ -191,6 +197,9 @@ function IndexContext() {
           </a>
         </p>
       </footer>
+
+      {/* Mobile Navigation Enhancements */}
+      <BackToTop />
     </div>
   );
 }

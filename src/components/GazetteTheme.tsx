@@ -42,6 +42,13 @@ const GazetteTheme = ({ yourName, partnerName, date, message, image, forceDeskto
         </div>
       </header>
 
+      {/* Breaking News Banner */}
+      <div className="bg-love-red/10 border-y border-love-red/30 py-2 mb-4 text-center">
+        <p className={`font-headline uppercase tracking-widest text-love-red font-bold ${forceDesktop ? 'text-sm' : 'text-[10px] sm:text-xs md:text-sm'}`}>
+          ⚡ BREAKING NEWS ⚡ Love Story of the Century Unfolds!
+        </p>
+      </div>
+
       {/* Headline */}
       <section className="text-center mb-4 sm:mb-6">
         <div className="flourish text-xl sm:text-2xl rotate-180">❦</div>
@@ -81,6 +88,14 @@ const GazetteTheme = ({ yourName, partnerName, date, message, image, forceDeskto
               deepest affection for the wonderful
               <span className="font-semibold text-ink"> {displayPartnerName}</span>.
             </p>
+
+            {/* Sidebar Quote */}
+            <div className="mt-4 p-3 bg-love-pink/10 border-l-4 border-love-red">
+              <p className="font-decorative text-xs italic text-ink-faded">
+                "Love is composed of a single soul inhabiting two bodies."
+              </p>
+              <p className="font-body text-xs text-ink-faded mt-1 text-right">— Aristotle</p>
+            </div>
           </div>
 
           {/* Center + Right: Love Message */}
@@ -94,9 +109,74 @@ const GazetteTheme = ({ yourName, partnerName, date, message, image, forceDeskto
             <p className="text-right font-decorative text-ink-faded mt-2">
               — With All My Love, {displayYourName}
             </p>
+
+            {/* Additional Story Section */}
+            <div className="mt-4 pt-4 border-t border-ornament/50">
+              <h4 className="font-headline text-sm font-bold text-headline uppercase mb-2 tracking-wide">
+                The Love Story Continues...
+              </h4>
+              <p className="font-body text-sm text-ink leading-relaxed">
+                Friends and family have noted the remarkable bond between {displayYourName} and {displayPartnerName}.
+                Their connection is truly one for the ages, inspiring all who witness it.
+              </p>
+            </div>
+
+            {/* Love Facts Box */}
+            <div className={`mt-4 grid gap-3 ${forceDesktop ? 'grid-cols-2' : 'grid-cols-2'}`}>
+              <div className="text-center p-2 sm:p-3 bg-paper-aged/70 border border-ornament/30">
+                <p className={`font-headline text-love-red font-bold ${forceDesktop ? 'text-2xl' : 'text-xl sm:text-2xl'}`}>∞</p>
+                <p className={`font-decorative text-ink-faded ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>Years of Love Promised</p>
+              </div>
+              <div className="text-center p-2 sm:p-3 bg-paper-aged/70 border border-ornament/30">
+                <p className={`font-headline text-love-red font-bold ${forceDesktop ? 'text-2xl' : 'text-xl sm:text-2xl'}`}>♥</p>
+                <p className={`font-decorative text-ink-faded ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>Hearts United as One</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
+
+      {/* Testimonials Section */}
+      <div className="border-t-2 border-b-2 border-ornament/50 py-3 sm:py-4 my-4">
+        <h3 className={`font-headline text-center font-bold text-headline uppercase tracking-widest mb-3 ${forceDesktop ? 'text-sm' : 'text-xs sm:text-sm'}`}>
+          What People Are Saying
+        </h3>
+        <div className={`grid gap-3 sm:gap-4 ${forceDesktop ? 'grid-cols-3' : 'grid-cols-1 sm:grid-cols-3'}`}>
+          <div className="text-center p-2">
+            <p className={`font-decorative italic text-ink-faded ${forceDesktop ? 'text-xs' : 'text-xs'}`}>"A match made in heaven!"</p>
+            <p className={`font-body text-ink-faded mt-1 ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>— The Stars</p>
+          </div>
+          <div className="text-center p-2">
+            <p className={`font-decorative italic text-ink-faded ${forceDesktop ? 'text-xs' : 'text-xs'}`}>"True love exists after all."</p>
+            <p className={`font-body text-ink-faded mt-1 ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>— Destiny</p>
+          </div>
+          <div className="text-center p-2">
+            <p className={`font-decorative italic text-ink-faded ${forceDesktop ? 'text-xs' : 'text-xs'}`}>"An inspiration to us all!"</p>
+            <p className={`font-body text-ink-faded mt-1 ${forceDesktop ? 'text-xs' : 'text-[10px] sm:text-xs'}`}>— Romance Weekly</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Classifieds Section */}
+      <div className="mb-6">
+        <h3 className="font-headline text-center text-xs font-bold text-headline uppercase tracking-widest mb-2 border-b border-ornament/30 pb-1">
+          ♥ Love Classifieds ♥
+        </h3>
+        <div className={`grid gap-2 ${forceDesktop ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-2'}`}>
+          <div className="p-2 bg-paper-aged/50 border border-ornament/20">
+            <p className="font-decorative text-xs text-ink">
+              <span className="font-bold">FOUND:</span> The most amazing person in the world.
+              Answers to "{displayPartnerName}". Reward: Eternal Love. Contact: {displayYourName}
+            </p>
+          </div>
+          <div className="p-2 bg-paper-aged/50 border border-ornament/20">
+            <p className="font-decorative text-xs text-ink">
+              <span className="font-bold">WANTED:</span> More moments together. More laughter.
+              More adventures. Apply within at: Forever & Always Corp.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="border-t-2 border-headline pt-4">
@@ -118,6 +198,11 @@ const GazetteTheme = ({ yourName, partnerName, date, message, image, forceDeskto
           <span className="font-decorative text-ornament text-sm">
             ☙ Printed with Love on Fine Parchment ❧
           </span>
+        </div>
+        <div className="text-center mt-2">
+          <p className="font-body text-xs text-ink-faded">
+            © {new Date().getFullYear()} The Love Gazette • All Rights Reserved • Spread the Love
+          </p>
         </div>
       </footer>
     </div>
