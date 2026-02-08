@@ -91,7 +91,7 @@ const LoveInputForm = ({
               onClick={() => {
                 const input = dateInputRef.current;
                 if (input) {
-                  if ('showPicker' in input) {
+                  if (typeof (input as any).showPicker === 'function') {
                     (input as any).showPicker();
                   } else {
                     input.click();
