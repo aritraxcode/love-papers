@@ -24,50 +24,69 @@ function IndexContext() {
     }
     setIsDownloading(true);
 
+    let container: HTMLDivElement | null = null;
+
     try {
-      const element = previewRef.current;
+      // 1. Create a container for the clone
+      container = document.createElement("div");
+      container.style.position = "absolute";
+      container.style.top = "-9999px";
+      container.style.left = "-9999px";
+      container.style.zIndex = "-9999";
+      // Force the container to be the target width
+      container.style.width = "794px";
+      document.body.appendChild(container);
 
-      // Save original styles
-      const originalWidth = element.style.width;
-      const originalMaxWidth = element.style.maxWidth;
-      const originalHeight = element.style.height;
-      const originalMinHeight = element.style.minHeight;
-      const originalMargin = element.style.margin;
-      const originalPadding = element.style.padding;
-      const originalTransform = element.style.transform;
-      const originalBoxShadow = element.style.boxShadow; // Save shadow
+      // 2. Wait for React to render 'forceDesktop' styles (triggered by setIsDownloading(true))
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
-      // Force desktop styles on the LIVE element temporarily
-      // This ensures 100% accurate rendering context (fonts, bg, etc.)
-      element.style.width = "794px";
-      element.style.maxWidth = "none";
-      element.style.height = "auto";
-      element.style.minHeight = "1123px";
-      element.style.margin = "0";
-      element.style.padding = "0"; // Removed padding to eliminate border
-      element.style.transform = "scale(1)";
-      element.style.boxShadow = "none"; // Remove shadow/border for download
+      // 3. Clone the element NOW, after it has been updated in the DOM
+      const originalElement = previewRef.current;
+      if (!originalElement) {
+        throw new Error("Preview element lost during render");
+      }
+      const clone = originalElement.cloneNode(true) as HTMLElement;
 
-      // Small delay to let layout settle
+      // 4. Apply styles to the CLONE to ensure it renders correctly for A4
+      clone.style.width = "794px";
+      clone.style.maxWidth = "none";
+      clone.style.height = "auto";
+      clone.style.minHeight = "1123px";
+      clone.style.margin = "0";
+      clone.style.padding = "0";
+      clone.style.transform = "none";
+      clone.style.boxShadow = "none";
+      clone.style.overflow = "visible";
+
+      // IMPORTANT: Find the inner theme wrapper and remove its max-width constraint
+      // chronicle-paper and vintage-paper have max-w-2xl usually
+      const themeWrapper = clone.querySelector('.chronicle-paper, .vintage-paper') as HTMLElement;
+      if (themeWrapper) {
+        themeWrapper.style.maxWidth = "none";
+        themeWrapper.style.width = "100%";
+        themeWrapper.style.margin = "0";
+        // Also ensure internal grids don't break
+      }
+
+      container.appendChild(clone);
+
+      // 5. Wait slightly for the clone to settle in the new container
       await new Promise((resolve) => setTimeout(resolve, 100));
 
-      const dataUrl = await toPng(element, {
-        cacheBust: true, // Ensure fresh capture
-        pixelRatio: 3, // Higher resolution (3x) for superior quality
-        // PNG is lossless - no quality parameter needed
+      // 6. Generate Image
+      const dataUrl = await toPng(clone, {
+        cacheBust: true,
+        pixelRatio: 2, // 2x resolution is sufficient for clear text without being huge
+        width: 794,
+        // Calculate height based on the clone's actual rendered height
+        height: clone.scrollHeight,
+        style: {
+          // Ensure no transform issues in capture
+          transform: 'none',
+        }
       });
 
-      // Restore original styles
-      element.style.width = originalWidth;
-      element.style.maxWidth = originalMaxWidth;
-      element.style.height = originalHeight;
-      element.style.minHeight = originalMinHeight;
-      element.style.margin = originalMargin;
-      element.style.padding = originalPadding;
-      element.style.transform = originalTransform;
-      element.style.boxShadow = originalBoxShadow; // Restore shadow
-
-      // Trigger download via invisible anchor element
+      // 7. Download
       const link = document.createElement("a");
       link.download = `love-letter-${partnerName || "valentine"}.png`;
       link.href = dataUrl;
@@ -78,6 +97,10 @@ function IndexContext() {
       console.error("Error generating image:", error);
       alert("Failed to generate image. Please try again. Error: " + (error instanceof Error ? error.message : String(error)));
     } finally {
+      // Safe cleanup
+      if (container && document.body.contains(container)) {
+        document.body.removeChild(container);
+      }
       setIsDownloading(false);
     }
   }, [partnerName]);

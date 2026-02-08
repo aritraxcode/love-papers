@@ -1,4 +1,5 @@
 
+import { useRef } from "react";
 import { IconCalendar } from "@tabler/icons-react";
 import ImageUpload from "./ImageUpload";
 import { Label } from "./ui/label";
@@ -32,6 +33,8 @@ const LoveInputForm = ({
   onDownload,
   isDownloading,
 }: LoveInputFormProps) => {
+  const dateInputRef = useRef<HTMLInputElement>(null);
+
   return (
     <div className="vintage-paper paper-shadow p-6 sm:p-8 w-full max-w-md mx-auto">
       <div className="text-center mb-6">
@@ -86,12 +89,13 @@ const LoveInputForm = ({
               type="text"
               readOnly
               onClick={() => {
-                // Find the date input sibling and open picker
-                const dateInput = document.getElementById('hidden-date-input') as HTMLInputElement;
-                if (dateInput && 'showPicker' in dateInput) {
-                  (dateInput as any).showPicker();
-                } else {
-                  dateInput?.click();
+                const input = dateInputRef.current;
+                if (input) {
+                  if ('showPicker' in input) {
+                    (input as any).showPicker();
+                  } else {
+                    input.click();
+                  }
                 }
               }}
               placeholder={`E.g. ${new Date().toLocaleDateString("en-US", {
@@ -106,6 +110,7 @@ const LoveInputForm = ({
               <IconCalendar size={20} />
             </div>
             <input
+              ref={dateInputRef}
               id="hidden-date-input"
               type="date"
               className="absolute inset-0 opacity-0 cursor-pointer w-full h-full -z-10"
