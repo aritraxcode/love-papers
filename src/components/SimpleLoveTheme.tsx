@@ -62,8 +62,7 @@ const SimpleLoveTheme = ({ yourName, partnerName, date, message, image, forceDes
 
     return (
         <div
-            className={`relative bg-[#fffdf7] text-ink w-full max-w-2xl mx-auto overflow-hidden ${forceDesktop ? 'p-12' : 'p-6 sm:p-10 md:p-12'
-                }`}
+            className={`relative bg-[#fffdf7] text-ink w-full max-w-2xl mx-auto overflow-hidden ${forceDesktop ? 'p-8' : 'p-4 sm:p-8 md:p-12'}`}
             style={{
                 minHeight: forceDesktop ? 'auto' : '650px',
                 fontFamily: '"Lora", serif' // Base font
@@ -103,19 +102,19 @@ const SimpleLoveTheme = ({ yourName, partnerName, date, message, image, forceDes
                 <header className="text-center mb-6 sm:mb-8 w-full">
                     <div className="flex justify-center items-end gap-2 mb-3 text-love-red/80">
                         <Sparkle className="mb-1 opacity-70 animate-pulse" />
-                        <span className="font-['Dancing_Script'] text-xl sm:text-2xl tracking-wide">A Love Story</span>
+                        <span className={`font-['Dancing_Script'] tracking-wide ${forceDesktop ? 'text-2xl' : 'text-xl sm:text-2xl'}`}>A Love Story</span>
                         <Sparkle className="mb-1 opacity-70 animate-pulse delay-75" />
                     </div>
 
                     <div className="relative inline-block">
                         <h1
                             className={`font-headline font-bold text-headline tracking-tight leading-none 
-                 ${forceDesktop ? 'text-6xl' : 'text-5xl sm:text-6xl md:text-7xl'}`}
+                 ${forceDesktop ? 'text-6xl md:text-7xl' : 'text-5xl sm:text-6xl md:text-7xl'}`}
                         >
                             The Two of Us
                         </h1>
-                        <span className="absolute -right-6 -top-4 text-love-red transform rotate-12 opacity-80 hidden sm:block">
-                            <HandDrawnHeart className="w-8 h-8 sm:w-10 sm:h-10" />
+                        <span className={`absolute -right-6 -top-4 text-love-red transform rotate-12 opacity-80 ${forceDesktop ? 'block' : 'hidden sm:block'}`}>
+                            <HandDrawnHeart className={`w-8 h-8 ${forceDesktop ? 'w-10 h-10' : 'sm:w-10 sm:h-10'}`} />
                         </span>
                     </div>
 
@@ -131,69 +130,69 @@ const SimpleLoveTheme = ({ yourName, partnerName, date, message, image, forceDes
                 </header>
 
                 {/* --- Main Content --- */}
-                <main className="w-full space-y-6 sm:space-y-8">
+                <main className={`w-full ${forceDesktop ? 'space-y-8' : 'space-y-6 sm:space-y-8'}`}>
 
                     {/* Couple Names - Handwriting Style */}
                     <section className="text-center px-4">
                         <h2
                             className={`font-headline italic text-ink mb-2 leading-relaxed transform -rotate-1 
-                 ${forceDesktop ? 'text-4xl' : 'text-3xl sm:text-4xl md:text-5xl'}`}
+                 ${forceDesktop ? 'text-5xl' : 'text-3xl sm:text-4xl md:text-5xl'}`}
                         >
-                            <span className="block sm:inline">{displayYourName}</span>
-                            <span className="text-love-red/60 mx-2 sm:mx-4 font-sans text-xl sm:text-2xl not-italic">&</span>
-                            <span className="block sm:inline">{displayPartnerName}</span>
+                            <span className={forceDesktop ? 'inline' : 'block sm:inline'}>{displayYourName}</span>
+                            <span className={`text-love-red/60 mx-2 font-sans not-italic ${forceDesktop ? 'text-2xl mx-4' : 'text-xl sm:text-2xl sm:mx-4'}`}>&</span>
+                            <span className={forceDesktop ? 'inline' : 'block sm:inline'}>{displayPartnerName}</span>
                         </h2>
                     </section>
 
                     {/* Photo Section - Polaroid Style */}
                     <section className="relative mx-auto w-full max-w-sm sm:max-w-md transform rotate-1 hover:rotate-0 transition-transform duration-700 ease-out group">
-                        <div className="bg-white p-3 sm:p-4 pb-12 sm:pb-16 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.1)] border border-gray-100 rounded-sm">
+                        <div className={`bg-white shadow-[0_4px_20px_-5px_rgba(0,0,0,0.1)] border border-gray-100 rounded-sm ${forceDesktop ? 'p-4 pb-16' : 'p-3 sm:p-4 pb-12 sm:pb-16'}`}>
                             {image ? (
-                                <div className="relative overflow-hidden w-full h-64 sm:h-72 bg-gray-100">
+                                <div className={`relative overflow-hidden w-full bg-gray-100 ${forceDesktop ? 'h-72' : 'h-64 sm:h-72'}`}>
                                     <img src={image} alt="Us" className="w-full h-full object-cover" />
                                     <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.05)] pointer-events-none"></div>
                                 </div>
                             ) : (
-                                <div className="w-full h-64 sm:h-72 bg-gray-50 flex flex-col items-center justify-center text-ink-faded/40 border-2 border-dashed border-gray-200">
+                                <div className={`w-full bg-gray-50 flex flex-col items-center justify-center text-ink-faded/40 border-2 border-dashed border-gray-200 ${forceDesktop ? 'h-72' : 'h-64 sm:h-72'}`}>
                                     <HandDrawnHeart className="w-16 h-16 mb-2 opacity-50" />
                                     <span className="text-sm font-['Dancing_Script'] text-xl">Add a photo here</span>
                                 </div>
                             )}
 
                             <div className="absolute bottom-4 left-0 right-0 text-center">
-                                <p className="   text-ink/70 text-lg sm:text-xl">
+                                <p className={`text-ink/70 ${forceDesktop ? 'text-xl' : 'text-lg sm:text-xl'}`}>
                                     Captured with Love
                                 </p>
                             </div>
                         </div>
 
                         {/* Tape effect */}
-                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 sm:w-32 h-6 sm:h-8 bg-[#ffffff]/60 rotate-[-2deg] pointer-events-none backdrop-blur-[1px] shadow-sm border border-white/40"></div>
+                        <div className={`absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#ffffff]/60 rotate-[-2deg] pointer-events-none backdrop-blur-[1px] shadow-sm border border-white/40 ${forceDesktop ? 'w-32 h-8' : 'w-24 sm:w-32 h-6 sm:h-8'}`}></div>
 
                         {/* Extra Doodles around Image */}
-                        <div className="absolute -right-6 -top-6 sm:-right-8 sm:-top-8 text-love-red/30 transform rotate-12">
-                            <SwirlDecoration className="w-12 h-12 sm:w-16 sm:h-16" />
+                        <div className={`absolute text-love-red/30 transform rotate-12 ${forceDesktop ? '-right-8 -top-8' : '-right-6 -top-6 sm:-right-8 sm:-top-8'}`}>
+                            <SwirlDecoration className={` ${forceDesktop ? 'w-16 h-16' : 'w-12 h-12 sm:w-16 sm:h-16'}`} />
                         </div>
-                        <div className="absolute -left-4 bottom-8 sm:-left-6 sm:bottom-12 text-love-red/20 transform -rotate-12">
-                            <TinyHeart className="w-4 h-4 sm:w-6 sm:h-6 animate-pulse" />
+                        <div className={`absolute text-love-red/20 transform -rotate-12 ${forceDesktop ? '-left-6 bottom-12' : '-left-4 bottom-8 sm:-left-6 sm:bottom-12'}`}>
+                            <TinyHeart className={`animate-pulse ${forceDesktop ? 'w-6 h-6' : 'w-4 h-4 sm:w-6 sm:h-6'}`} />
                         </div>
-                        <div className="absolute -right-2 bottom-2 sm:-right-4 sm:bottom-2 text-love-red/20 transform rotate-45">
-                            <TinyHeart className="w-3 h-3 sm:w-4 sm:h-4" />
+                        <div className={`absolute text-love-red/20 transform rotate-45 ${forceDesktop ? '-right-4 bottom-2' : '-right-2 bottom-2 sm:-right-4 sm:bottom-2'}`}>
+                            <TinyHeart className={`${forceDesktop ? 'w-4 h-4' : 'w-3 h-3 sm:w-4 sm:h-4'}`} />
                         </div>
-                        <div className="absolute left-[-10px] top-[-5px] sm:left-[-20px] sm:top-[-10px] text-love-red/20 transform -rotate-45">
-                            <Sparkle className="w-4 h-4 sm:w-6 sm:h-6 animate-pulse delay-75" />
+                        <div className={`absolute text-love-red/20 transform -rotate-45 ${forceDesktop ? 'left-[-20px] top-[-10px]' : 'left-[-10px] top-[-5px] sm:left-[-20px] sm:top-[-10px]'}`}>
+                            <Sparkle className={`animate-pulse delay-75 ${forceDesktop ? 'w-6 h-6' : 'w-4 h-4 sm:w-6 sm:h-6'}`} />
                         </div>
                     </section>
 
                     {/* Message Section */}
-                    <section className="max-w-xl mx-auto text-center px-4 sm:px-8 relative">
-                        <div className="hidden sm:block absolute top-0 left-0 -ml-4 transform -rotate-12 text-love-red/10">
+                    <section className={`max-w-xl mx-auto text-center relative ${forceDesktop ? 'px-8' : 'px-4 sm:px-8'}`}>
+                        <div className={`hidden sm:block absolute top-0 left-0 -ml-4 transform -rotate-12 text-love-red/10 ${forceDesktop ? 'block' : 'hidden sm:block'}`}>
                             <ArrowDoodle className="w-16" />
                         </div>
 
                         <blockquote
                             className={`font-body text-ink leading-loose italic relative z-10
-                ${forceDesktop ? 'text-lg' : 'text-base sm:text-lg md:text-xl'}`}
+                ${forceDesktop ? 'text-xl' : 'text-base sm:text-lg md:text-xl'}`}
                         >
                             <span className="text-4xl text-love-red/20 font-serif absolute -top-4 left-0 -translate-x-2">“</span>
                             {displayMessage}
@@ -203,7 +202,7 @@ const SimpleLoveTheme = ({ yourName, partnerName, date, message, image, forceDes
                 </main>
 
                 {/* --- Footer --- */}
-                <footer className="mt-10 sm:mt-14 text-center w-full border-t border-love-red/10 pt-6 sm:pt-8 bg-gradient-to-b from-transparent to-love-red/5">
+                <footer className={`text-center w-full border-t border-love-red/10 bg-gradient-to-b from-transparent to-love-red/5 ${forceDesktop ? 'mt-14 pt-8' : 'mt-10 sm:mt-14 pt-6 sm:pt-8'}`}>
 
                     <div className={`grid grid-cols-2 gap-4 max-w-xs mx-auto mb-6 ${forceDesktop ? 'text-sm' : 'text-xs sm:text-sm'}`}>
                         <div className="text-center p-2 rounded-lg bg-white/40 border border-love-red/5 shadow-sm">
@@ -224,7 +223,7 @@ const SimpleLoveTheme = ({ yourName, partnerName, date, message, image, forceDes
                         <HandDrawnHeart className="w-4 h-4 text-love-red animate-pulse delay-100" />
                     </div>
 
-                    <p className="font-decorative text-xs sm:text-sm text-ink-faded/60 mt-1">
+                    <p className={`font-decorative text-ink-faded/60 mt-1 ${forceDesktop ? 'text-sm' : 'text-xs sm:text-sm'}`}>
                         Sealed with a kiss
                     </p>
                 </footer>

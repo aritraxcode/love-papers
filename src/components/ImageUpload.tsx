@@ -39,7 +39,7 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
             <img
               src={image}
               alt="Uploaded"
-              className="w-full h-32 object-cover sepia-image"
+              className="w-full h-32 object-cover"
             />
           </div>
 
