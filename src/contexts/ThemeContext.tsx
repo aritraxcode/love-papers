@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-export type PaperTheme = "gazette" | "chronicle";
+export type PaperTheme = "gazette" | "chronicle" | "simple";
 
 interface ThemeContextType {
   theme: PaperTheme;
@@ -10,7 +10,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<PaperTheme>("gazette");
+  const [theme, setTheme] = useState<PaperTheme>("simple");
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

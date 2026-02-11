@@ -3,6 +3,23 @@ import { useRef } from "react";
 import { IconCalendar } from "@tabler/icons-react";
 import ImageUpload from "./ImageUpload";
 import { Label } from "./ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+
+const PRE_MADE_MESSAGES = [
+  "My love for you grows stronger with every passing day. You are my greatest adventure and my safest home.",
+  "In your eyes, I found my home. In your heart, I found my love. You are everything to me.",
+  "Every moment with you is a gift. Thank you for being my rock, my joy, and my best friend.",
+  "I never knew what love truly meant until I met you. You make my world brighter just by being in it.",
+  "To the one who holds my heart: You are my sun, my moon, and all my stars. I love you more than words can say.",
+  "Walking through life with you is my favorite journey. I choose you today, tomorrow, and forever.",
+  "You are the best thing that ever happened to me. Thank you for loving me exactly as I am."
+];
 
 interface LoveInputFormProps {
   yourName: string;
@@ -141,6 +158,22 @@ const LoveInputForm = ({
           <Label htmlFor="message" className="font-headline text-sm uppercase tracking-wide text-ink">
             Your Message of Love
           </Label>
+
+          <div className="mb-2">
+            <Select onValueChange={(value) => setMessage(value)}>
+              <SelectTrigger className="w-full vintage-input bg-white/50 border-love-red/20 text-ink-faded italic">
+                <SelectValue placeholder="Need inspiration? Choose a message..." />
+              </SelectTrigger>
+              <SelectContent>
+                {PRE_MADE_MESSAGES.map((msg, index) => (
+                  <SelectItem key={index} value={msg} className="text-ink font-body">
+                    <span className="block sm:hidden">{msg.substring(0, 30)}...</span>
+                    <span className="hidden sm:block">{msg.substring(0, 50)}...</span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <textarea
             id="message"
             placeholder="Write your heartfelt message, poem, or declaration of love..."
