@@ -62,7 +62,7 @@ const SimpleLoveTheme = ({ yourName, partnerName, date, message, image, forceDes
 
     return (
         <div
-            className={`relative text-ink w-full max-w-2xl mx-auto overflow-hidden ${forceDesktop ? 'p-8' : 'p-4 sm:p-8 md:p-12'}`}
+            className={`relative bg-[#fffdf7] text-ink w-full max-w-2xl mx-auto overflow-hidden ${forceDesktop ? 'p-8' : 'p-4 sm:p-8 md:p-12'}`}
             style={{
                 minHeight: forceDesktop ? 'auto' : '650px',
                 fontFamily: '"Lora", serif' // Base font
